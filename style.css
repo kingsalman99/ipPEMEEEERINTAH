@@ -1,3 +1,20 @@
-.header {
+header {
+    margin-top: 5%;
+}
+
+#shift {
+    margin-left: 5%;
+}
+
+#gov {
+    display: inline;
+    margin-right: 2%;
+}
+
+#edu {
+    display: inline;
+}
+
+#resultsArea {
     margin-top: 5%;
 }
