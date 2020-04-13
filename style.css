@@ -93,3 +93,7 @@ header {
     height: 5em;
   }
 }
+
+#loaded a:link, a:visited, a:hover, a:active {
+    color: black;
+}
