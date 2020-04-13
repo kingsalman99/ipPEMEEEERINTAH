@@ -16,9 +16,13 @@ PLEASE READ
 For more information, read the FAQ (coming soon)
 
 You should use this search tool and database for:
+
 • Research
+
 • Finding the contact details of schools, i.e. if you have had abuse from an IP address, you may be able to locate the contact details of teachers.
+
 • Any other legal purpose
+
 ❌ Any misuse of this information is supported by any of the contributors, nor will we be responsible for any such misuse.
 
 More details coming soon.
