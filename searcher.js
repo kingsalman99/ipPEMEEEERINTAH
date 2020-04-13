@@ -47,65 +47,6 @@
         }
     }
 
-    function searchIPs() {
-        let finalHtml = `
-        <tr>
-            <th>IP</th>
-            <th>Type</th>
-            <th>Hostname</th>
-            <th>Details</th>
-        </tr>
-        `;
-
-        let query = document.getElementById("searchBox").value.toLowerCase();
-        let cDB = currentDB();
-        cDB.forEach(function(v){
-            if (v.ip.toLowerCase().includes(query)) {
-                finalHtml += ipObjToTable(v);
-            }
-        });
-        // Done
-        document.getElementById("resultsTable").innerHTML = finalHtml;
-    }
-
-    function searchDetails() {
-        let finalHtml = `
-        <tr>
-            <th>IP</th>
-            <th>Type</th>
-            <th>Hostname</th>
-            <th>Details</th>
-        </tr>
-        `;
-        let query = document.getElementById("searchBox").value.toLowerCase();
-        let cDB = currentDB();
-        cDB.forEach(function(v){
-            if (v.details.toLowerCase().includes(query)) {
-                finalHtml += ipObjToTable(v);
-            }
-        });
-        // Done
-        document.getElementById("resultsTable").innerHTML = finalHtml;
-    }
-
-    function searchHostname() {
-        let finalHtml = `
-        <tr>
-            <th>IP</th>
-            <th>Type</th>
-            <th>Hostname</th>
-            <th>Details</th>
-        </tr>
-        `;
-        let query = document.getElementById("searchBox").value.toLowerCase();
-        let cDB = currentDB();
-        cDB.forEach(function(v){
-            if (v.host.toLowerCase().includes(query)) {
-                finalHtml += ipObjToTable(v);
-            }
-        });
-        document.getElementById("resultsTable").innerHTML = finalHtml;
-    }
         function searchDB(input) { // Searches but autodetects (based on checkbox and checking for ip)
             let finalHtml = `
             <tr>
@@ -117,6 +58,12 @@
             `
             let query = document.getElementById("searchBox").value.toLowerCase();
             let cDB = currentDB();
+            //IMPROVEMENTS WE COULD MAKE:
+            // 1)
+            //We could make a script to add a 'hidden' field to the json to categorise 
+            //by IPV4/6 and then using Regex detect whether an ip is ipv4/6 and then 
+            //only search certain fields accordingly.
+            // 2) there is *probably* a better way to do what i did below anyway
             if(input==0) {
                 cDB.forEach(function(v){
                     if (v.ip.toLowerCase().includes(query)) {
@@ -138,15 +85,7 @@
             }
             document.getElementById("resultsTable").innerHTML = finalHtml;
         }
-        // Done
-
-         // Notes for later self: IF the contents of searchBox mentions "details" in ANY form& is search details, 
-        //ignore everything but 'Details Unknown'
-        //() IF it is an ip (We can follow the general rule of replacing any amount of numbers 
-        //next to eachother with 1 X (after removing whitespace) and then checking if it follows the structure X.X.X.X, as it seems to be only ipv4)
-        // More notes: since we can automate detecting an IP, we should make the choice to search for hosts a checkbox, since honestly most records lack one.
-        // Also, add option to list all with hostnames (just add if they dont contain "" aka nothing)
-        // Doing this actual bit will be easy; keep the structure the same here but skip checking if checkbox ticked
+ 
 
 
 

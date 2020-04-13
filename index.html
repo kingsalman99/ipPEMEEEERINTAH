@@ -5,12 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
+    <script src="searcher.js"></script>
+    <script id="eduDatabase" src="ipBank12042020edu.js" onload="loaded();"></script>
+    <!--library and framework hell (only for alerts??)-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <!-- It doesnt seem like we need these... remove in PR?-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <!-- Will keep fn anyway-->
+
 
 </head>
 <body>
@@ -35,7 +37,7 @@
         </header>
         
 
-        <!--Can simplify this bit, no extra js needed.-->
+        <!--This could be made into pure CSS if we dont use the fade thingy-->
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <strong>PLEASE READ</strong>
             <ul>
@@ -58,12 +60,6 @@
             ❌ Any misuse of this information is not supported by any of the contributors, nor will we be responsible for any such misuse.
         </div>
 
-
-
-
-
-        <!-- Only shows when loaded process complete (JSON is loaded in)-->
-        <!-- Keeping this fn-->
         <div class="alert alert-primary alert-dismissible fade show" role="alert">
             <strong>Tip: </strong> Enter an IP address, hostname or part of the details, such as a city or physical address, then click the appropriate button. If you get no results, try a different button or query.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -83,7 +79,7 @@
             </div>
         </form>
             
-        <!---->    
+        <!--Searching stuff - for javascript go to searcher.js-->    
         <p style="margin: 0 0 0 0;">Search:</p>
         <input type="text" class="form-control" id="searchBox" placeholder="Enter your query"> <br>
         <div id="searchControls" style="text-align: center;">
@@ -106,15 +102,10 @@
     
     
 </div>
-<script src="searcher.js"></script>
-
-
-<script id="eduDatabase" src="ipBank12042020edu.js" onload="loaded();"></script>
-
-
 </body>
 </html>
 
+<!-- Minor issue: mobile support could be slightly iffy but more than functional (some spacing issues with the radio buttons)-->
 
 
 
