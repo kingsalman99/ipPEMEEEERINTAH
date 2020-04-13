@@ -54,10 +54,14 @@
         </div>
         <div class="alert" role="alert">
             <strong>You should use this search tool and database for:</strong><br>
-            • Research<br>
-            • Finding the contact details of schools, i.e. if you have had abuse from an IP address, you may be able to locate the contact details of teachers.<br>
-            • Any other legal purpose<br>
-            ❌ Any misuse of this information is not supported by any of the contributors, nor will we be responsible for any such misuse.
+            <ul>
+                <li>Research</li>
+                <li>Finding the contact details of schools, i.e. if you have had abuse from an IP address, you may be able to locate the contact details of teachers.</li>
+                <li>Any other legal purpose</li>
+                
+            </ul>
+
+            
         </div>
 
         <div class="alert alert-primary alert-dismissible fade show" role="alert">
@@ -92,6 +96,7 @@
             <button type="button" class="btn btn-dark" onclick="searchDB(2);">Search Hostnames</button>
             <br>
             <small>Not sure what to search? Try 100 random IPs: <a href="#" onclick="Ran100(ipBank.IPs.education);">Education</a>     <a href="#" onclick="Ran100(ipBank.IPs.government);">Government</a></small>
+            <br><small style="color: red;">❌ Any misuse of this information is not supported by any of the contributors, nor will we be responsible for any such misuse.</small>
         </div>
         <div class="table-responsive" id="resultsArea">
             <table class="table" id="resultsTable">
