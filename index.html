@@ -73,7 +73,9 @@
         <div id="searchControls" style="text-align: center;">
             <button type="button" class="btn btn-primary" onclick="searchIPs();">Search IPs</button>
             <button type="button" class="btn btn-secondary" onclick="searchDetails();">Search Details</button>
+            <input type="checkbox" id="hostcheck"> Search by hostname </input>
             <button type="button" class="btn btn-dark" onclick="searchHostname();">Search Hostnames</button>
+            <input type="submit" value="Search" onclick="searchDB()"></input>
             <br>
             <small>Not sure what to search? Try 100 random IPs: <a href="#" onclick="Ran100(ipBank.IPs.education);">Education</a>     <a href="#" onclick="Ran100(ipBank.IPs.government);">Government</a></small>
         </div>
@@ -194,25 +196,43 @@
                 finalHtml += ipObjToTable(v);
             }
         });
-        // Done
         document.getElementById("resultsTable").innerHTML = finalHtml;
     }
+        function searchDB() { // Searches but autodetects (based on checkbox and checking for ip)
+            let finalHtml = `
+            <tr>
+                <th>IP</th>
+                <th>Type</th>
+                <th>Hostname</th>
+                <th>Details</th>
+            </tr>
+            `
+            let query = document.getElementById("searchbox").value.toLowerCase();
+            let checked = document.getElementById('hostcheck').checked();
+            let cDB = currentDB();
+            if(checked == false) { // When false: IP check then search Details/IP
+                let isIP = false;
+                let query_temp = query; // Regex time
+                query_temp.replace(/[0-9]/g, 'X');
+                query_temp.replace(/X{2,}/g, 'X');
+                if(query_temp == "X.X.X.X") { // if it follows the ip structure its an ip boi
+                    isIP = true;
+                } else {
+                    isIP = false;                    
+                }
+            }
+                    document.getElementById("resultsTable").innerHTML = finalHtml;
+
+                    url = url.replace(/\/p\d+/, '');
+        }
+        // Done
+
          // Notes for later self: IF the contents of searchBox mentions "details" in ANY form& is search details, 
         //ignore everything but 'Details Unknown'
         //() IF it is an ip (We can follow the general rule of replacing any amount of numbers 
         //next to eachother with 1 X (after removing whitespace) and then checking if it follows the structure X.X.X.X, as it seems to be only ipv4)
         // More notes: since we can automate detecting an IP, we should make the choice to search for hosts a checkbox, since honestly most records lack one.
         // Also, add option to list all with hostnames (just add if they dont contain "" aka nothing)
-
-        // CHANGES FOR IP SEARCHING: 
-        //S1: take only XXX.***.***.*** of ***.***.***.***
-        //S2: go to halfway of range of first 3 ints
-        // S3: too hi/lo?
-        //  s4:go to mid of next hi/lo range
-        //  s5: too hi /lo
-        // repeat s4/5 till established all are in XXX
-        // repeat all of next 3 ints in ip until desired ip found
-        
         // Doing this actual bit will be easy; keep the structure the same here but skip checking if checkbox ticked
 </script>
 
@@ -221,6 +241,11 @@
 
 </body>
 </html>
+
+
+
+
+
 <!--No, Richard, it's 'Linux', not 'GNU/Linux'. The most important contributions
 that the FSF made to Linux were the creation of the GPL and the GCC compiler. 
 Those are fine and inspired products. GCC is a monumental achievement and 
