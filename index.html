@@ -1,29 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>IPBank by Ed. E</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <title>IPBank by Ed. E</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- It doesnt seem like we need these... remove in PR?-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- Will keep fn anyway-->
+
 </head>
 <body>
-
 <div class="container">
-    <br><br><br>
-    <h1>🏦 IPBank</h1>
-    <h5><span style="color:white;">---------</span>by Ed.E</h5>
-    <p>Search over 145,000 government and school IP addresses.</p> 
+    <div class="header">
+        <h1>🏦 IPBank</h1>
+        <h5><span style="color:white;">---------</span>by Ed.E</h5>
+        <p>Search over 145,000 government and school IP addresses.</p> 
+    </div>
+    
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>PLEASE READ</strong><br>
-        • This database contains over 145,000+ IP addresses from schools, colleges, universities and government agencies and even the offices
-        of organisations such as NATO and the UN.<br/>
-        • At the moment, this data contains mostly English speaking countries.
-        <br>• Not all this data is up to date, but a majority is.<br>
-        • <strong>THIS DATA IS PROVIDED FOR RESEARCH ONLY.</strong> Using this data maliciously is not supported by any of the contributors.<br>
-        <small>For more information, read the FAQ (coming soon)</small>
+        <strong>PLEASE READ</strong>
+        <ul>
+            <li>This database contains over 145,000+ IP addresses from schools, colleges, universities and government agencies and even the offices
+                of organisations such as NATO and the UN.</li>
+            <li>At the moment, this data contains mostly English speaking countries.</li>
+            <li><b>Some/Most</b> of this data is up to date</li>
+            <li><strong>This data is provided for research ONLY.</strong> Using this data maliciously is not supported by any of the contributors.</li>
+        </ul>
+        <small>For more information, read the <a href="#">FAQ</a> (coming soon)</small> <!--Added placeholder hyperlink for future use-->
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
