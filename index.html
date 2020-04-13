@@ -14,48 +14,59 @@
 
 </head>
 <body>
+
 <div class="container">
-    <header>
-        <h1>🏦 IPBank</h1>
-        <h5 id="shift">by Ed.E</h5>
-        <p>Search 145,000+ government and school IP's.</p> 
-    <header>
-    
-    <!--Can simplify this bit, no extra js needed.-->
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>PLEASE READ</strong>
-        <ul>
-            <li>This database contains over 145,000+ IP addresses from schools, colleges, universities and government agencies and even the offices
-                of organisations such as NATO and the UN.</li>
-            <li>At the moment, this data contains mostly English speaking countries.</li>
-            <li><b>Some/Most</b> of this data is up to date</li>
-            <li><strong>This data is provided for research ONLY.</strong> Using this data maliciously is not supported by any of the contributors.</li>
-        </ul>
-        <small>For more information, read the <a href="#">FAQ</a> (coming soon)</small> <!--Added placeholder hyperlink for future use-->
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-    </div>
-    <div class="alert" role="alert">
-        <strong>You should use this search tool and database for:</strong><br>
-        • Research<br>
-        • Finding the contact details of schools, i.e. if you have had abuse from an IP address, you may be able to locate the contact details of teachers.<br>
-        • Any other legal purpose<br>
-        ❌ Any misuse of this information is not supported by any of the contributors, nor will we be responsible for any such misuse.
-    </div>
+
     <div id="loading">
         <!-- Tfw you have to load over 28mb of scripts. sorry about the center tag -->
         <center>
-            <b>Please wait for the database to load...</b>
-            <br><small>12MB Database</small>
+            <h4>Please wait for the database(s) to load...</h4>
+        <br>
+            <div class="loader">LOADING</div>
         </center>
+
+        
     </div>
 
     <div id="loaded" style="display:none;">
-        <!-- Search time
-            Only shows when loaded
-        I am horrible at html and this was whipped up really quick
-        -->
+        <header>
+            <h1>🏦 IPBank</h1>
+            <h5 id="shift">by Ed.E</h5>
+            <p>Search 145,000+ government and school IP's.</p> 
+        <header>
+        
+        <!--Can simplify this bit, no extra js needed.-->
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>PLEASE READ</strong>
+            <ul>
+                <li>This database contains over 145,000+ IP addresses from schools, colleges, universities and government agencies and even the offices
+                    of organisations such as NATO and the UN.</li>
+                <li>At the moment, this data contains mostly English speaking countries.</li>
+                <li><b>Some/Most</b> of this data is up to date</li>
+                <li><strong>This data is provided for research ONLY.</strong> Using this data maliciously is not supported by any of the contributors.</li>
+            </ul>
+            <small>For more information, read the <a href="#">FAQ</a> (coming soon)</small> <!--Added placeholder hyperlink for future use-->
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+        <div class="alert" role="alert">
+            <strong>You should use this search tool and database for:</strong><br>
+            • Research<br>
+            • Finding the contact details of schools, i.e. if you have had abuse from an IP address, you may be able to locate the contact details of teachers.<br>
+            • Any other legal purpose<br>
+            ❌ Any misuse of this information is not supported by any of the contributors, nor will we be responsible for any such misuse.
+        </div>
+
+
+
+
+
+
+
+
+
+        <!-- Only shows when loaded process complete (JSON is loaded in)-->
         <!-- Keeping this fn-->
         <div class="alert alert-primary alert-dismissible fade show" role="alert">
             <strong>Tip: </strong> Enter an IP address, hostname or part of the details, such as a city or physical address, then click the appropriate button. If you get no results, try a different button or query.
@@ -63,20 +74,20 @@
                 <span aria-hidden="true">&times;</span>
               </button>
         </div>
-
-        <strong>Choose the database you would like to search: </strong>
-            <form id="goveduSelect">
-                <div id="gov">
-                    <input class="form-check-input" type="radio" name="dbSelect" id="govDBSel" value="gov">
-                    <label class="form-check-label" for="govDBSel">Government and Defence</label>    
-                </div>
-                <div id="edu">
-                    <input class="form-check-input" type="radio" name="dbSelect" id="eduDBSel" value="edu" checked>
-                    <label class="form-check-label" for="eduDBSel">Schools, Colleges, Universities and other Education</label>  
-                </div>
-
-            </form>
+        <!--CHANGES WHAT JSON 'DB' WE ARE SEARCHING FROM.-->
+        <form id="goveduSelect">
+            <strong>Choose the database you would like to search: </strong><br>
+            <div id="gov">
+                <input class="form-check-input" type="radio" name="dbSelect" id="govDBSel" value="gov">
+                <label class="form-check-label" for="govDBSel">Government and Defence</label>    
+            </div>
+            <div id="edu">
+                <input class="form-check-input" type="radio" name="dbSelect" id="eduDBSel" value="edu" checked>
+                <label class="form-check-label" for="eduDBSel">Schools, Colleges, Universities and other Education</label>  
+            </div>
+        </form>
             
+        <!---->    
         <p style="margin: 0 0 0 0;">Search:</p>
         <input type="text" class="form-control" id="searchBox" placeholder="Enter your query"> <br>
         <div id="searchControls" style="text-align: center;">
@@ -97,152 +108,8 @@
     
     
 </div>
+<script src="searcher.js"></script>
 
-<script>
-    function loaded() {
-        // we loaded
-        var script = document.createElement('script');
-        script.src = "ipBank12042020gov.js"; // include gov database
-        script.onload = function() {
-            // once loaded we can do our things
-            document.getElementById("loading").style = "display:none;";
-            document.getElementById("loaded").style = ""; // show search
-        };
-        document.head.appendChild(script);
-    }
-
-    function Ran100(obj) {
-        // Random 100 IPS
-        let finalHtml = `
-        <tr>
-            <th>IP</th>
-            <th>Type</th>
-            <th>Hostname</th>
-            <th>Details</th>
-        </tr>
-        `;
-        for (var i = 0; i < 100; i++) {
-           // 100 times
-           finalHtml += ipObjToTable(obj[Math.floor(Math.random() * obj.length)]);
-        }
-        document.getElementById("resultsTable").innerHTML = finalHtml;
-    }
-
-    function ipObjToTable(obj) {
-        return `
-        <tr>
-            <td>`+ obj.ip +`</td>
-            <td>`+ obj.type +`</td>
-            <td>`+ obj.host +`</td>
-            <td>`+ obj.details +`</td>
-        </tr>
-        `;
-    }
-
-    function currentDB() {
-        if (document.getElementById("govDBSel").checked) {
-            return ipBank.IPs.government;
-        } else {
-            return ipBank.IPs.education;
-        }
-    }
-
-    function searchIPs() {
-        let finalHtml = `
-        <tr>
-            <th>IP</th>
-            <th>Type</th>
-            <th>Hostname</th>
-            <th>Details</th>
-        </tr>
-        `;
-
-        let query = document.getElementById("searchBox").value.toLowerCase();
-        let cDB = currentDB();
-        cDB.forEach(function(v){
-            if (v.ip.toLowerCase().includes(query)) {
-                finalHtml += ipObjToTable(v);
-            }
-        });
-        // Done
-        document.getElementById("resultsTable").innerHTML = finalHtml;
-    }
-
-    function searchDetails() {
-        let finalHtml = `
-        <tr>
-            <th>IP</th>
-            <th>Type</th>
-            <th>Hostname</th>
-            <th>Details</th>
-        </tr>
-        `;
-        let query = document.getElementById("searchBox").value.toLowerCase();
-        let cDB = currentDB();
-        cDB.forEach(function(v){
-            if (v.details.toLowerCase().includes(query)) {
-                finalHtml += ipObjToTable(v);
-            }
-        });
-        // Done
-        document.getElementById("resultsTable").innerHTML = finalHtml;
-    }
-
-    function searchHostname() {
-        let finalHtml = `
-        <tr>
-            <th>IP</th>
-            <th>Type</th>
-            <th>Hostname</th>
-            <th>Details</th>
-        </tr>
-        `;
-        let query = document.getElementById("searchBox").value.toLowerCase();
-        let cDB = currentDB();
-        cDB.forEach(function(v){
-            if (v.host.toLowerCase().includes(query)) {
-                finalHtml += ipObjToTable(v);
-            }
-        });
-        document.getElementById("resultsTable").innerHTML = finalHtml;
-    }
-        function searchDB() { // Searches but autodetects (based on checkbox and checking for ip)
-            let finalHtml = `
-            <tr>
-                <th>IP</th>
-                <th>Type</th>
-                <th>Hostname</th>
-                <th>Details</th>
-            </tr>
-            `
-            let query = document.getElementById("searchbox").value.toLowerCase();
-            let checked = document.getElementById('hostcheck').checked();
-            let cDB = currentDB();
-            if(checked == false) { // When false: IP check then search Details/IP
-                let isIP = false;
-                let query_temp = query; // Regex time
-                query_temp.replace(/[0-9]/g, 'X');
-                query_temp.replace(/X{2,}/g, 'X');
-                if(query_temp == "X.X.X.X") { // if it follows the ip structure its an ip boi
-                    isIP = true;
-                } else {
-                    isIP = false;                    
-                }
-            }
-                    document.getElementById("resultsTable").innerHTML = finalHtml;
-
-                    url = url.replace(/\/p\d+/, '');
-        }
-        // Done
-
-         // Notes for later self: IF the contents of searchBox mentions "details" in ANY form& is search details, 
-        //ignore everything but 'Details Unknown'
-        //() IF it is an ip (We can follow the general rule of replacing any amount of numbers 
-        //next to eachother with 1 X (after removing whitespace) and then checking if it follows the structure X.X.X.X, as it seems to be only ipv4)
-        // More notes: since we can automate detecting an IP, we should make the choice to search for hosts a checkbox, since honestly most records lack one.
-        // Also, add option to list all with hostnames (just add if they dont contain "" aka nothing)
-        // Doing this actual bit will be easy; keep the structure the same here but skip checking if checkbox ticked
-</script>
 
 <script id="eduDatabase" src="ipBank12042020edu.js" onload="loaded();"></script>
 
