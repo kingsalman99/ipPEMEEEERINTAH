@@ -106,7 +106,7 @@
         });
         document.getElementById("resultsTable").innerHTML = finalHtml;
     }
-        function searchDB() { // Searches but autodetects (based on checkbox and checking for ip)
+        function searchDB(input) { // Searches but autodetects (based on checkbox and checking for ip)
             let finalHtml = `
             <tr>
                 <th>IP</th>
@@ -115,23 +115,28 @@
                 <th>Details</th>
             </tr>
             `
-            let query = document.getElementById("searchbox").value.toLowerCase();
-            let checked = document.getElementById('hostcheck').checked();
+            let query = document.getElementById("searchBox").value.toLowerCase();
             let cDB = currentDB();
-            if(checked == false) { // When false: IP check then search Details/IP
-                let isIP = false;
-                let query_temp = query; // Regex time
-                query_temp.replace(/[0-9]/g, 'X');
-                query_temp.replace(/X{2,}/g, 'X');
-                if(query_temp == "X.X.X.X") { // if it follows the ip structure its an ip boi
-                    isIP = true;
-                } else {
-                    isIP = false;                    
-                }
+            if(input==0) {
+                cDB.forEach(function(v){
+                    if (v.ip.toLowerCase().includes(query)) {
+                        finalHtml += ipObjToTable(v);
+                    }
+                });
+            } else if(input==1) {
+                cDB.forEach(function(v){
+                    if (v.details.toLowerCase().includes(query)) {
+                        finalHtml += ipObjToTable(v);
+                    }
+                });
+            } else if(input==2) {
+                cDB.forEach(function(v){
+                    if (v.host.toLowerCase().includes(query)) {
+                        finalHtml += ipObjToTable(v);
+                    }
+                });
             }
-                    document.getElementById("resultsTable").innerHTML = finalHtml;
-
-                    url = url.replace(/\/p\d+/, '');
+            document.getElementById("resultsTable").innerHTML = finalHtml;
         }
         // Done
 
@@ -142,3 +147,11 @@
         // More notes: since we can automate detecting an IP, we should make the choice to search for hosts a checkbox, since honestly most records lack one.
         // Also, add option to list all with hostnames (just add if they dont contain "" aka nothing)
         // Doing this actual bit will be easy; keep the structure the same here but skip checking if checkbox ticked
+
+
+
+        //cDB.forEach(function(v){
+        //    if (v.host.toLowerCase().includes(query)) {
+        //        finalHtml += ipObjToTable(v);
+        //    }
+        //});
